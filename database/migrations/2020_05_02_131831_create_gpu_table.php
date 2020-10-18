@@ -15,14 +15,15 @@ class CreateGpuTable extends Migration
     {
         Schema::create('gpus', function (Blueprint $table) {
             $table->id('gpu_id');
-            $table->int('core_clock');
-            $table->int('g_memory');
+            $table->unsignedBigInteger('manufacturer_id');
+            $table->integer('core_clock');
+            $table->integer('g_memory');
             $table->decimal('price');
-            $table->int('boost_clock');
+            $table->integer('boost_clock');
             $table->timestamps();
 
             //fk
-            $table->foreign('manufacturer_id')->references('manufacturing_id')->on('manufacturers');
+            $table->foreign('manufacturer_id')->references('manufacturer_id')->on('manufacturers');
             
         });
     }

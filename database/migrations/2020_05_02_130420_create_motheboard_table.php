@@ -15,14 +15,17 @@ class CreateMotheboardTable extends Migration
     {
         Schema::create('motherboards', function (Blueprint $table) {
             $table->id('mobo_id');
+            $table->unsignedBigInteger('manufacturer_id');
+            $table->unsignedBigInteger('formfactor_id');
+            //$table->unsignedBigInteger('platform_id');
             $table->string('name');
             $table->decimal('price');
             $table->timestamps();
 
             //fk
-            $table->foreign('manufacturer_id')->references('manufacturing_id')->on('manufacturers');
+            $table->foreign('manufacturer_id')->references('manufacturer_id')->on('manufacturers');
             $table->foreign('formfactor_id')->references('formfactor_id')->on('form_factors');
-            $table->foreign('platform_id')->references('platform_id')->on('platforms');
+            //$table->foreign('platform_id')->references('platform_id')->on('platforms');
 
         });
     }
